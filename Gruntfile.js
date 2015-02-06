@@ -107,8 +107,7 @@ module.exports = function (grunt) {
           wrap: {
               startFile: "build/wrap.start",
               endFile: "build/wrap.end"
-          },
-          optimize: 'none'
+          }
         }
       }
     },
