@@ -8,6 +8,12 @@ You can use this library as either a standalone script, loaded using regular `<s
 
 Grab the production version from the _dist_ directory. Unless you want to help develop the library, this is all you need.
 
+## Why?
+
+I wanted a single JavaScript library that allowed me to follow all of the rules defined in the [XSS Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet) but I couldn't find one. So I made this, which attempts to be one. I don't think it's too far off (allowing for any undiscovered bugs). I believe it meets the criteria specified in rules 1 to 5, and escapes or encodes strings as directed therein.
+
+Rules 0 and 7 are more _general guidelines_ for you to follow rather then specifications for how a library should behave, and nothing a library can code for specifically _per se_. Rule 6 specifies 'Sanitize HTML Markup with a Library Designed for the Job'. I agree completely, and this is not that library. It can escape strings that are to be used as the content of HTML, or as attributes, but it doesn't sanitize mark-up itself.
+
 ## Usage
 
 When using as a standalone script, the library adds a global called `encoda`. Use this to call the methods you need for the task at hand. Currently, the library provides escaping for:
