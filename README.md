@@ -24,7 +24,7 @@ Additionally, it provides the following conveniences:
 
 The methods exposed by the library are namespaced according to their usage, for example, to use the HTML attribute escaper, call the method like this:
 
-`encoda.attribute.escape(_stringToEscape_);`
+`encoda.attribute.escape('stringToEscape');`
 
 The method will return the escaped string.
 
@@ -43,15 +43,15 @@ Use the library like this:
 
 | Method signature | Usage |
 |------------------|-------|
-| `encoda.attribute.escape(_stringToEscape_);` | Returns the escaped string |
-| `encoda.attribute.isWhitelisted(_attributeToTest_);` | Returns false if the attribute is not recommended to have dynamic text injected in |
-| `encoda.html.escape(_stringToEscape_);` | Returns the escaped string |
-| `encoda.html.isEscaped(_stringToTest_);` | Returns true is the string is already escaped |
-| `encoda.css.escape(_stringToEscape_);` | Returns the escaped string |
-| `encoda.javascript.escape(_stringToEscape_);` | Returns the escaped string |
-| `encoda.json.parseFromElement(_domElementToParseFrom_);` | Returns the parsed string |
-| `encoda.url.encode(_stringToEncode_);` | Returns the encoded string |
-| `encoda.url.encodeParameter(_stringToEncode_);` | Returns the encoded string |
+| `encoda.attribute.escape('stringToEscape');` | Returns the escaped string |
+| `encoda.attribute.isWhitelisted('attributeToTest');` | Returns false if the attribute is not recommended to have dynamic text injected in |
+| `encoda.html.escape('stringToEscape');` | Returns the escaped string |
+| `encoda.html.isEscaped('stringToTest');` | Returns true is the string is already escaped |
+| `encoda.css.escape('stringToEscape');` | Returns the escaped string |
+| `encoda.javascript.escape('stringToEscape');` | Returns the escaped string |
+| `encoda.json.parseFromElement('domElementToParseFrom');` | Returns the parsed string |
+| `encoda.url.encode('stringToEncode');` | Returns the encoded string |
+| `encoda.url.encodeParameter('stringToEncode');` | Returns the encoded string |
 
 ## Disclaimer
 

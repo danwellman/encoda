@@ -38,6 +38,6 @@ There are 3 HTML files in the root of the project and each is used to test diffe
 1. Fix stuff.
 1. Run `grunt test` to see if the tests pass. Repeat steps 2-4 until done.
 1. Open _index.html_, _dist-test.html_ and _dist-test-require.html_ in actual browsers to test the changes.
+1. Push to your fork and submit a pull request.
 1. Pull requests containing new public methods must include relevant JSDoc tags to generate documentation.
 1. Pull requests containing files added to the _dist_, _docs_ or _reports_ subdirectories will be rejected.
-1. Push to your fork and submit a pull request.
