@@ -173,5 +173,5 @@ module.exports = function (grunt) {
   grunt.registerTask('preview', ['connect:development']);
   grunt.registerTask('preview-live', ['default', 'connect:production']);
   grunt.registerTask('test', ['karma']);
-  grunt.registerTask('jsdoc', ['jsdoc:dist']);
+  grunt.registerTask('docs', ['jsdoc:dist']);
 };
