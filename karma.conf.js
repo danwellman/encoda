@@ -44,8 +44,7 @@ module.exports = function (config) {
               },
               {
                   type: 'html',
-                  dir: 'reports/coverage',
-                  file: 'coverage.html'
+                  dir: 'reports/coverage'
               }
           ]
       },
@@ -64,7 +63,7 @@ module.exports = function (config) {
 
 
       // enable / disable watching file and executing tests whenever any file changes
-      autoWatch: true,
+      autoWatch: false,
 
 
       // Start these browsers, currently available:
