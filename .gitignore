@@ -3,5 +3,6 @@ bower_components/
 temp/
 .test2
 coverage/
-reports/
 .test/
+reports/
+
