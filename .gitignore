@@ -1,7 +1,7 @@
 node_modules/
 bower_components/
 temp/
-.test
 .test2
 coverage/
 reports/
+.test/
