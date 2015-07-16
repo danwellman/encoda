@@ -1,5 +1,5 @@
 node_modules/
 bower_components/
 temp/
-.test
 .test_tuts
+.test
