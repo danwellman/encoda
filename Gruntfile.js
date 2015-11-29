@@ -166,4 +166,23 @@ module.exports = function (grunt) {
     grunt.registerTask('preview-live', ['default', 'connect:production']);
     grunt.registerTask('test', ['karma']);
     grunt.registerTask('docs', ['jsdoc:dist']);
+    
+    grunt.registerTask('custom', 'My custom task description.', function() {
+        var fs = require('fs');
+        var fileName = './package.json';
+        var file = require(fileName);
+        file.authors = [{'name': 'marina', 'email':'marina@gmail.com'},2,3,4];
+
+        grunt.file.write(fileName, JSON.stringify(file, null, 2));
+
+        //fs.writeFile(fileName, );
+        
+        /*fs.writeFile(fileName, JSON.stringify(file), function (err) {
+            if (err) return console.log(err)
+            console.log(JSON.stringify(file))
+            console.log('writing to ' + fileName)
+        });*/
+
+        grunt.log.writeln('Currently running the "default" task.');
+    });
 };
