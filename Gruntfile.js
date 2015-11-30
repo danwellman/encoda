@@ -170,65 +170,55 @@ module.exports = function (grunt) {
     grunt.registerTask('update-contributors',
         'Update contributors',
         function() {
-            var fs = require('fs');
+            var done = this.async();
+            var getTopContribs = require('top-gh-contribs');
+            var oauthKey = process.env.GITHUB_OAUTH_KEY;
             var packageJsonFileName = './package.json';
             var packageJsonFile = require(packageJsonFileName);
             var bowerJsonFileName = './bower.json';
             var bowerJsonFile = require(bowerJsonFileName);
-            var done = this.async();
-            var getTopContribs = require('top-gh-contribs');
-            var oauthKey = process.env.GITHUB_OAUTH_KEY;
-
 
             grunt.log.writeln('Downloading release and contributor information from GitHub...');
 
             return getTopContribs({
-                    user: 'fmtvp',
-                    repo: 'tal',
+                    user: 'marinamarina',
+                    repo: 'encoda',
                     oauthKey: oauthKey,
-                    //sinceDate: timeSpan,
                     retry: true
                 })
                 .then(function (contributors) {
-                    var contributorsString = '';
-                    // write to authors
+                    var contributorsString = '',
+                        contributorsArray = [];
 
+                    // write to authors
                     contributors.forEach(function(c) {
                         contributorsString += c.name + " <" + c.githubUrl + ">\n";
                     });
+
+                    contributorsArray = contributorsString.trim().split("\n");
 
                     // write to authors.md
                     grunt.file.write('AUTHORS', contributorsString);
 
                     // write to package.json
-                    packageJsonFile.contributors = contributorsString.trim().split("\n");
+                    packageJsonFile.contributors = contributorsArray;
                     grunt.file.write(packageJsonFileName, JSON.stringify(packageJsonFile, null, 2));
 
                     //write to bower.json
-                    bowerJsonFile.authors = contributorsString.trim().split("\n");
+                    bowerJsonFile.authors = contributorsArray;
                     grunt.file.write(bowerJsonFileName, JSON.stringify(bowerJsonFile, null, 2));
 
                 })
-                .then(done).catch(function (error) {
-                    if (error.http_status) {
-                    grunt.log.writeln('\nGitHub API request returned status: ' + error.http_status);
+                .then(done).catch(function (err) {
+                    if (err.http_status) {
+                    grunt.log.writeln('\nGitHub API request returned status: ' + err.http_status);
                 }
 
-                if (error.ratelimit_limit) {
-                    grunt.log.writeln('\nRate limit data: limit: %d, remaining: %d, reset: %s', error.ratelimit_limit, error.ratelimit_remaining, error.ratelimit_reset);
+                if (err.ratelimit_limit) {
+                    grunt.log.writeln('\nRate limit data: limit: %d, remaining: %d, reset: %s', err.ratelimit_limit, err.ratelimit_remaining, err.ratelimit_reset);
                 }
                 done(false);
             });
-
-            /*
-            var open = require('nodegit').Repository.open;
-
-            open(".")
-            .then(function(repo) {
-                console.log(repo);
-                return repo.getHeadCommit();
-            });
-            */
 
     });
 };
