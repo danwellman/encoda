@@ -166,4 +166,58 @@ module.exports = function (grunt) {
     grunt.registerTask('preview-live', ['default', 'connect:production']);
     grunt.registerTask('test', ['karma']);
     grunt.registerTask('docs', ['jsdoc:dist']);
+    grunt.registerTask('update-contributors',
+          'Update contributors',
+          function() {
+
+              var done = this.async(),
+                  getTopContribs = require('top-gh-contribs'),
+                  path           = require('path'),
+                  oauthKey = process.env.GITHUB_OAUTH_KEY;
+
+            /*
+                var options = {
+                user: 'fmtvp',
+                repo: 'tal' };
+            */
+            grunt.log.writeln('Downloading release and contributor information from GitHub...');
+
+            return getTopContribs({
+                    user: 'marinamarina',
+                    repo: 'encoda',
+                    oauthKey: oauthKey,
+                    //sinceDate: timeSpan,
+                    retry: true
+                })
+                .then(function (contributors) {
+                    var contributorsString = '';
+                    // write to authors
+
+                    contributors.forEach(function(c) {
+                    contributorsString += c.name + " <" + c.githubUrl + ">\n";
+                });
+                grunt.log.writeln('Updating AUTHORS file...');
+                grunt.file.write('AUTHORS', contributorsString);
+
+                //grunt.file.write(grunt.package, '{}');
+
+                //console.log(grunt.package);
+                grunt.package.contributors = [];
+                console.log(grunt.package)
+                grunt.file.write('package.json', grunt.package);
+                //grunt.template.process('<%= pkg.contributors %>.js')
+                //write to package.json
+                //write to bower.json
+                })
+                .then(done).catch(function (error) {
+                    if (error.http_status) {
+                    grunt.log.writeln('\nGitHub API request returned status: ' + error.http_status);
+                }
+
+                if (error.ratelimit_limit) {
+                    grunt.log.writeln('\nRate limit data: limit: %d, remaining: %d, reset: %s', error.ratelimit_limit, error.ratelimit_remaining, error.ratelimit_reset);
+                }
+                done(false);
+            });
+    });
 };
