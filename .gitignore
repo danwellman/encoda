@@ -1,9 +1,4 @@
 node_modules/
 bower_components/
 temp/
-.test_tuts
 .test
-.forkoff
-.demo
-.test2
-.test_it_baby
